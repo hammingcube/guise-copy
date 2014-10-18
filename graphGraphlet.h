@@ -106,6 +106,8 @@ private:
 	bool edgeCWValid;//!< A private member variable
 
 	EDGE current;//!< A private member variable
+public:
+	string input_filename;
 
 public:
 	/*! \fn ~graph_()
@@ -128,6 +130,7 @@ public:
  		*  \param filename char pointer
  		*/
     graph_(const char* filename) {
+    	input_filename = filename;
     	triCountDone=false;
     	degreeCountDone=false;
     	edgeCWValid=false;

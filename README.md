@@ -1,3 +1,19 @@
+## This is a fork of GUISE software (see below)
+
+How to run it?
+
+```
+export BOOST_PATH=/path/to/boost/library
+make
+./GUISE -d footballUND.txt -i 20000
+```
+The main output of interest will be:
+```
+graphlet_count_footballUND.txt
+```
+
+## Original README follows
+
 This software use MCMC sampling to return a set of sample induced subgraph of
 size 3 to 5 using uniform distribution. If you use this code for any of your
 work, please cite the following article:
