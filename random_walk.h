@@ -69,7 +69,8 @@ public:
 		
 		ofstream out2("visit_count"); // Will hold visit count of each graphlet
 		ofstream out3 ("graphlet_ineach_iteration"); // Will contain graphlet visited in each iteration
-		ofstream out4 ((string("graphlet_count") + "_" + g->input_filename).c_str()); // will contain total visit count of each type(1-29) of graphlet
+		string graphlet_count_file = g->input_filename + string(".graphlet_count.txt");
+		ofstream out4 (graphlet_count_file.c_str(), ios::app); // will contain total visit count of each type(1-29) of graphlet
 		set<graphlet*>::iterator sit;
 		double totalgraphlet=0;
 		int iter=1;
