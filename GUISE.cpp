@@ -1,6 +1,7 @@
 //! \file GUISE.cpp - main function of this project.
 #include <iostream>
 #include <vector>
+#include <ctime>
 #include "graphGraphlet.h"
 #include "time.h"
 #include "time_tracker.h"
@@ -63,6 +64,7 @@ struct eqtri
 		*  \return integer
  		*/
 int main(int argc, char *argv[]) {
+	clock_t begin_main = clock();
 	typedef struct induction ind;
 	parse_args(argc, argv);
 	graph_* g=new graph_(datafile);
@@ -73,6 +75,12 @@ int main(int argc, char *argv[]) {
 	tt.start();
 	rw->walk();
 	tt.stop();
+
+	clock_t end_main = clock();
+	double elapsed_secs = double(end_main - begin_main) / CLOCKS_PER_SEC;
+	ofstream olog("all-logs.txt", ios::app);
+	olog << elapsed_secs << "\t" << tt.print() << endl;
+	olog.close();
 	cout <<"Total time taken = "<<tt.print()<<" seconds"<<endl;
 	
 	delete g;

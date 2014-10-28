@@ -69,8 +69,7 @@ public:
 		
 		ofstream out2("visit_count"); // Will hold visit count of each graphlet
 		ofstream out3 ("graphlet_ineach_iteration"); // Will contain graphlet visited in each iteration
-		string graphlet_count_file = g->input_filename + string(".graphlet_count.txt");
-		ofstream out4 (graphlet_count_file.c_str(), ios::app); // will contain total visit count of each type(1-29) of graphlet
+		ofstream out4 ("graphlet_count"); // will contain total visit count of each type(1-29) of graphlet
 		set<graphlet*>::iterator sit;
 		double totalgraphlet=0;
 		int iter=1;
@@ -90,6 +89,8 @@ public:
 			
 			if(iter>maxiter)
 			{
+				ofstream olog("all-logs.txt", ios::app);
+				olog << g->input_filename << "\t" << maxiter << "\t";
 				
 				for(cit = visit_count.begin(); cit != visit_count.end();cit++)
 				{
@@ -97,11 +98,16 @@ public:
 				}
 				for(int k=1; k<30; k++)
 				{
+					olog << graphletcount[k] << "\t";
 					out4 << k << "\t" << graphletcount[k] << "\n";
 					totalgraphlet += graphletcount[k];
 				}
+				olog.close();
 				totalgraphlet += 29;
 				cout << "(graphlet type,proportion(in %))\n";
+				
+				
+					
 				for(int k=1; k<30; k++)
 				{
 					cout <<"("<< k << "," << ((graphletcount[k]+1)/totalgraphlet)*100<<")";
